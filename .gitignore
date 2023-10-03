@@ -1,0 +1,4 @@
+syncd/grpc
+syncd/third_party
+.vagrant
+.vscode

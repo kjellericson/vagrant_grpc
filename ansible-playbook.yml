@@ -1,0 +1,44 @@
+---
+- name: Provision and configure Ubuntu
+  hosts: all
+  become: true
+  tasks:
+    - name: Update apt packages cache
+      apt:
+        update_cache: yes
+
+    - name: Install required packages
+      apt:
+        name: 
+          - python3
+          - python3-pip
+          - emacs
+          - perl
+          - git
+      become: true
+
+    - name: grpc packages https://chromium.googlesource.com/external/github.com/grpc/grpc/+/HEAD/BUILDING.md
+      apt:
+        name: 
+          - build-essential
+          - autoconf
+          - libtool
+          - pkg-config
+          - cmake
+          - clang
+          - libc++-dev
+      become: true
+
+## Setup GRPC
+# git clone -b RELEASE_TAG_HERE https://github.com/grpc/grpc
+# cd grpc
+# git submodule update --init
+
+# mkdir -p cmake/build
+# cd cmake/build
+# cmake -DBUILD_SHARED_LIBS=ON ../..
+# make
+
+# sudo ../run_distrib_test_cmake.sh
+
+
